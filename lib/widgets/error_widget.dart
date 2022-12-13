@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:usersdetails/bloc/users_bloc.dart';
+
+import '../cubit/users_cubit.dart';
 
 class MyErrorWidget extends StatelessWidget {
   final String message;
@@ -21,7 +22,7 @@ class MyErrorWidget extends StatelessWidget {
           const SizedBox(height: 10.0),
           ElevatedButton(
             onPressed: () {
-              BlocProvider.of<UsersBloc>(context).add(GetAllUsersEvent());
+              BlocProvider.of<UsersCubit>(context).getAllUsers();
             },
             child: const Text('Try Again'),
           )

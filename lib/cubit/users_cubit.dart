@@ -23,25 +23,13 @@ class UsersCubit extends Cubit<UsersState> {
     }
   }
 
-  void deleteUsers(int id) async {
-    try {
-      final users = await usersApi.getAllUsers();
-      print(users);
-      final newUsers = users..removeWhere((element) => element.id == id);
-      print(newUsers);
-      // final newUsers = await usersApi.deleteUsers(ids);
-      emit(LoadedState(users));
-    } catch (e) {
-      rethrow;
-    }
-  }
-
   void updateUsers(List<Users> users) async {
     emit(LoadingState());
     try {
+      print(users);
       emit(LoadedState(users));
     } catch (e) {
-      rethrow;
+      emit(const ErrorState('Something went wrong,\nplease try again later!'));
     }
   }
 }

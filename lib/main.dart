@@ -10,7 +10,7 @@ import 'package:usersdetails/screens/users_screen.dart';
 import 'cubit/users_cubit.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
+FlutterLocalNotificationsPlugin();
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print('handling background message: $message');
@@ -32,7 +32,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
-  void initState(){
+  void initState() {
     super.initState();
     Notifications.initialize(flutterLocalNotificationsPlugin);
   }
@@ -41,14 +41,20 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-      UsersCubit(usersApi: UsersApi())..getAllUsers(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Users Bloc Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.green,
-        ),
-        home: const UsersScreen(),
+      UsersCubit(usersApi: UsersApi())
+        ..getAllUsers(),
+      child: BlocConsumer<UsersCubit, UsersState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Users Bloc Demo',
+            theme: ThemeData(
+              primarySwatch: Colors.green,
+            ),
+            home: const UsersScreen(),
+          );
+        },
       ),
     );
   }

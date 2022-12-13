@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../api/users_api.dart';
-import '../bloc/users_bloc.dart';
 import '../cubit/users_cubit.dart';
 import '../models/users_model.dart';
 
@@ -37,10 +36,6 @@ class ListWidget extends StatelessWidget {
               ),
             ),
             subtitle: Text(users[index].email),
-            trailing: Checkbox(
-              value: false,
-              onChanged: (bool? value) {},
-            ),
           ),
         );
       },
